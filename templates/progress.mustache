@@ -1,0 +1,326 @@
+<div class="lhprogress">
+
+    <div class="lhprogress__header">
+        <div>
+            <h3 class="lhprogress__title">
+                {{#str}}learningprogress, block_lhprogress{{/str}}
+            </h3>
+
+            <p class="lhprogress__subtitle">
+                {{#str}}subtitle, block_lhprogress{{/str}}
+            </p>
+        </div>
+
+        <a href="{{viewallurl}}" class="lhprogress__viewall">
+            {{#str}}viewall, block_lhprogress{{/str}} →
+        </a>
+    </div>
+
+
+    <div class="lhprogress__overview">
+
+        <div class="lhprogress__ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+
+                <circle
+                    class="lhprogress__ring-track"
+                    cx="60"
+                    cy="60"
+                    r="50">
+                </circle>
+
+                <circle
+                    class="lhprogress__ring-value"
+                    cx="60"
+                    cy="60"
+                    r="50"
+                    style="stroke-dashoffset: {{progressoffset}};">
+                </circle>
+
+            </svg>
+
+            <div class="lhprogress__ring-label">
+                <strong>{{overallprogress}}%</strong>
+                <span>
+                    {{#str}}overallprogress, block_lhprogress{{/str}}
+                </span>
+            </div>
+        </div>
+
+
+        <div class="lhprogress__stats">
+
+            <div class="lhprogress__stat">
+                <strong>{{activecourses}}</strong>
+                <span>
+                    {{#str}}activecourses, block_lhprogress{{/str}}
+                </span>
+            </div>
+
+            <div class="lhprogress__stat">
+                <strong>{{completedcourses}}</strong>
+                <span>
+                    {{#str}}completed, block_lhprogress{{/str}}
+                </span>
+            </div>
+
+{{#showduesoonstat}}
+    <div class="lhprogress__stat">
+        <strong>{{duesooncourses}}</strong>
+        <span>
+            {{#str}}duesoon, block_lhprogress{{/str}}
+        </span>
+    </div>
+{{/showduesoonstat}}
+
+{{#showoverduestat}}
+    <div class="lhprogress__stat lhprogress__stat--overdue">
+        <strong>{{overduecourses}}</strong>
+        <span>
+            {{#str}}overdue, block_lhprogress{{/str}}
+        </span>
+    </div>
+{{/showoverduestat}}
+
+        </div>
+    </div>
+
+
+    <div class="lhprogress__section">
+
+        <div class="lhprogress__section-title">
+            {{#str}}continuelearning, block_lhprogress{{/str}}
+        </div>
+
+
+        {{#courses}}
+
+            <a href="{{url}}" class="lhprogress__course">
+
+                <div class="lhprogress__course-icon">
+                    {{initial}}
+                </div>
+
+
+                <div class="lhprogress__course-content">
+
+<div class="lhprogress__course-top">
+    <strong>{{name}}</strong>
+</div>
+
+{{#showprogress}}
+    <div class="lhprogress__progress-label">
+        <span>Course Progress</span>
+        <strong>{{progress}}%</strong>
+    </div>
+
+    <div class="lhprogress__bar">
+        <span style="width: {{progress}}%;"></span>
+    </div>
+{{/showprogress}}
+
+                    {{#showprogress}}
+                        <div class="lhprogress__bar">
+                            <span style="width: {{progress}}%;"></span>
+                        </div>
+                    {{/showprogress}}
+
+
+                    {{#showtimetracking}}
+
+                        <div class="
+                            lhprogress__time
+                            lhprogress__time--{{timeclass}}
+                        ">
+
+                            <div class="lhprogress__time-top">
+
+                                <span>
+
+                                    {{#duesoon}}
+                                        Due Soon
+                                    {{/duesoon}}
+
+                                    {{#due}}
+                                        Due
+                                    {{/due}}
+
+                                    {{#graceperiod}}
+                                        Grace Period
+                                    {{/graceperiod}}
+
+                                    {{#overdue}}
+                                        Overdue
+                                    {{/overdue}}
+
+                                    {{^duesoon}}
+                                        {{^due}}
+                                            {{^graceperiod}}
+                                                {{^overdue}}
+                                                    Time Progress
+                                                {{/overdue}}
+                                            {{/graceperiod}}
+                                        {{/due}}
+                                    {{/duesoon}}
+
+                                </span>
+
+                                <span>
+                                    {{timeprogress}}%
+                                </span>
+
+                            </div>
+
+
+<div class="lhprogress__time-bar">
+
+    <span
+        class="lhprogress__time-bar-fill lhprogress__time-bar-fill--{{timeclass}}"
+        style="width: {{timeprogress}}%;">
+    </span>
+
+    <span
+        class="lhprogress__time-marker lhprogress__time-marker--due"
+        style="left: {{dueposition}}%;">
+    </span>
+
+    <span
+        class="lhprogress__time-marker lhprogress__time-marker--overdue"
+        style="left: {{overdueposition}}%;">
+    </span>
+
+</div>
+
+<div class="lhprogress__time-scale">
+
+    <span>Enrolled</span>
+
+    <span
+        class="lhprogress__time-scale-due"
+        style="left: {{dueposition}}%;">
+        Due
+    </span>
+
+    <span
+        class="lhprogress__time-scale-overdue"
+        style="left: {{overdueposition}}%;">
+        Overdue
+    </span>
+
+    <span>Final</span>
+
+</div>
+
+                            {{#daysremaining}}
+
+                                <div class="lhprogress__time-remaining">
+
+                                    {{#duesoon}}
+                                        Due in {{daysremaining}} days
+                                    {{/duesoon}}
+
+                                    {{#due}}
+                                        Due
+                                    {{/due}}
+
+                                    {{#graceperiod}}
+                                        Grace period:
+                                        {{daysremaining}} days remaining
+                                    {{/graceperiod}}
+
+                                    {{#overdue}}
+                                        Overdue
+                                    {{/overdue}}
+
+                                    {{^duesoon}}
+                                        {{^due}}
+                                            {{^graceperiod}}
+                                                {{^overdue}}
+                                                    {{daysremaining}} days remaining
+                                                {{/overdue}}
+                                            {{/graceperiod}}
+                                        {{/due}}
+                                    {{/duesoon}}
+
+                                </div>
+
+                            {{/daysremaining}}
+
+                        </div>
+
+                    {{/showtimetracking}}
+
+
+                    <div class="
+                        lhprogress__course-meta
+                        {{#overdue}}
+                            lhprogress__course-meta--overdue
+                        {{/overdue}}
+                        {{#duesoon}}
+                            lhprogress__course-meta--duesoon
+                        {{/duesoon}}
+                        {{#graceperiod}}
+                            lhprogress__course-meta--grace
+                        {{/graceperiod}}
+                    ">
+
+                        <span>{{status}}</span>
+
+                        {{#showenrollmentdate}}
+                            {{#enrollmentdate}}
+                                <span>
+                                    Enrolled {{enrollmentdate}}
+                                </span>
+                            {{/enrollmentdate}}
+                        {{/showenrollmentdate}}
+
+                        {{#showduedate}}
+                            {{#duedate}}
+                                <span>
+                                    Due {{duedate}}
+                                </span>
+                            {{/duedate}}
+                        {{/showduedate}}
+
+                    </div>
+
+                </div>
+
+
+                <span class="lhprogress__arrow">
+                    →
+                </span>
+
+            </a>
+
+        {{/courses}}
+
+
+        {{^courses}}
+
+            <div class="lhprogress__empty">
+                {{#str}}nocourses, block_lhprogress{{/str}}
+            </div>
+
+        {{/courses}}
+
+    </div>
+
+
+    {{#showbrowsecourses}}
+
+        <div class="lhprogress__footer">
+
+            <a
+                href="{{coursesurl}}"
+                class="lhprogress__browse">
+
+                {{#str}}browsecourses, block_lhprogress{{/str}} →
+
+            </a>
+
+        </div>
+
+    {{/showbrowsecourses}}
+
+</div>

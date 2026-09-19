@@ -1,0 +1,609 @@
+.lhprogress {
+    width: 100%;
+    color: #17324d;
+}
+
+.lhprogress__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.lhprogress__title {
+    margin: 0;
+    color: #123b67;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.lhprogress__subtitle {
+    margin: 4px 0 0;
+    color: #7b8794;
+    font-size: 12px;
+}
+
+.lhprogress__viewall,
+.lhprogress__browse {
+    color: #1f4e79;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.lhprogress__overview {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 20px;
+    margin-bottom: 22px;
+    border: 1px solid #e4eaf0;
+    border-radius: 14px;
+    background: #ffffff;
+}
+
+.lhprogress__ring {
+    position: relative;
+    flex: 0 0 130px;
+    width: 130px;
+    height: 130px;
+}
+
+.lhprogress__ring svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.lhprogress__ring-track,
+.lhprogress__ring-value {
+    fill: none;
+    stroke-width: 9;
+}
+
+.lhprogress__ring-track {
+    stroke: #edf1f5;
+}
+
+.lhprogress__ring-value {
+    stroke: #1f4e79;
+    stroke-linecap: round;
+    stroke-dasharray: 314.16;
+    transition: stroke-dashoffset 0.4s ease;
+}
+
+.lhprogress__ring-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.lhprogress__ring-label strong {
+    color: #123b67;
+    font-size: 25px;
+    line-height: 1;
+}
+
+.lhprogress__ring-label span {
+    margin-top: 5px;
+    color: #7b8794;
+    font-size: 9px;
+    line-height: 1.2;
+}
+
+.lhprogress__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    flex: 1;
+}
+
+.lhprogress__stat {
+    padding-left: 18px;
+    border-left: 1px solid #e8edf2;
+}
+
+.lhprogress__stat strong {
+    display: block;
+    color: #123b67;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.lhprogress__stat span {
+    display: block;
+    margin-top: 7px;
+    color: #7b8794;
+    font-size: 11px;
+}
+
+.lhprogress__section {
+    margin-bottom: 18px;
+}
+
+.lhprogress__section-title {
+    margin-bottom: 10px;
+    color: #123b67;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.lhprogress__course {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    border-top: 1px solid #edf0f3;
+    color: inherit;
+    text-decoration: none;
+}
+
+.lhprogress__course:hover {
+    text-decoration: none;
+}
+
+.lhprogress__course-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    background: #edf5ff;
+    color: #1f4e79;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.lhprogress__course-content {
+    min-width: 0;
+    flex: 1;
+}
+
+.lhprogress__course-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 7px;
+}
+
+.lhprogress__course-top strong {
+    overflow: hidden;
+    color: #17324d;
+    font-size: 12px;
+    font-weight: 650;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.lhprogress__course-top span {
+    flex: 0 0 auto;
+    color: #1f4e79;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.lhprogress__bar {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: #edf1f5;
+}
+
+.lhprogress__bar span {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    background: #4c8fc9;
+}
+
+.lhprogress__course-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 5px;
+    color: #8a95a1;
+    font-size: 10px;
+}
+
+.lhprogress__arrow {
+    flex: 0 0 auto;
+    color: #1f4e79;
+    font-size: 17px;
+}
+
+.lhprogress__empty {
+    padding: 20px 0;
+    color: #7b8794;
+    font-size: 12px;
+    text-align: center;
+}
+
+.lhprogress__footer {
+    padding-top: 5px;
+    text-align: right;
+}
+
+@media (max-width: 650px) {
+    .lhprogress__header {
+        display: block;
+    }
+
+    .lhprogress__viewall {
+        display: inline-block;
+        margin-top: 10px;
+    }
+
+    .lhprogress__overview {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .lhprogress__stats {
+        width: 100%;
+    }
+
+    .lhprogress__stat:first-child {
+        padding-left: 0;
+        border-left: 0;
+    }
+}
+
+@media (max-width: 420px) {
+    .lhprogress__stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .lhprogress__stat {
+        padding-left: 0;
+        border-left: 0;
+    }
+
+    .lhprogress__course-top {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
+    }
+}
+.lhprogress__stat--overdue strong {
+    color: #c62828;
+}
+
+.lhprogress__course-meta--overdue span:first-child {
+    color: #c62828;
+    font-weight: 600;
+}
+
+.lhprogress__course-meta--overdue span:last-child {
+    color: #c62828;
+}
+
+.lhprogress__course:has(.lhprogress__course-meta--overdue) {
+    background: #fff5f5;
+    border-radius: 8px;
+}
+
+.lhprogress__course:has(.lhprogress__course-meta--overdue)
+.lhprogress__course-icon {
+    background: #fde8e8;
+    color: #c62828;
+}
+
+/* =========================================================
+   Learning Journey - Time Progress
+   ========================================================= */
+
+.lhprogress__time {
+    margin-top: 8px;
+    width: 100%;
+}
+
+.lhprogress__time-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-size: 11px;
+    line-height: 1.3;
+    color: #6b7280;
+}
+
+.lhprogress__time-top span:first-child {
+    font-weight: 600;
+}
+
+.lhprogress__time-bar {
+    width: 100%;
+    height: 5px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.lhprogress__time-bar-fill {
+    display: block;
+    height: 100%;
+    min-width: 2px;
+    border-radius: 999px;
+    transition: width 0.3s ease;
+}
+
+/* Normal timeline */
+.lhprogress__time-bar-fill--normal {
+    background: #1f4e79;
+}
+
+/* Due Soon */
+.lhprogress__time-bar-fill--duesoon {
+    background: #d89b00;
+}
+
+.lhprogress__course:has(.lhprogress__time-bar-fill--duesoon) {
+    background: #fffaf0;
+    border-radius: 8px;
+}
+
+.lhprogress__course:has(.lhprogress__time-bar-fill--duesoon)
+.lhprogress__time-top span:first-child {
+    color: #b77900;
+}
+
+/* Overdue */
+.lhprogress__time-bar-fill--overdue {
+    background: #c62828;
+}
+
+.lhprogress__course:has(.lhprogress__time-bar-fill--overdue) {
+    background: #fff5f5;
+    border-radius: 8px;
+}
+
+.lhprogress__course:has(.lhprogress__time-bar-fill--overdue)
+.lhprogress__time-top span:first-child {
+    color: #c62828;
+}
+
+.lhprogress__time-remaining {
+    margin-top: 4px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.lhprogress__course:has(.lhprogress__time-bar-fill--duesoon)
+.lhprogress__time-remaining {
+    color: #b77900;
+    font-weight: 600;
+}
+
+.lhprogress__course:has(.lhprogress__time-bar-fill--overdue)
+.lhprogress__time-remaining {
+    color: #c62828;
+    font-weight: 600;
+}
+
+/* =========================================================
+   Learning Journey - Time Progress
+   ========================================================= */
+
+.lhprogress__time {
+    margin-top: 9px;
+    width: 100%;
+}
+
+.lhprogress__time-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-size: 11px;
+    line-height: 1.3;
+    color: #6b7280;
+}
+
+.lhprogress__time-top span:first-child {
+    font-weight: 600;
+}
+
+.lhprogress__time-bar {
+    width: 100%;
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.lhprogress__time-bar-fill {
+    display: block;
+    height: 100%;
+    min-width: 3px;
+    border-radius: 999px;
+    transition: width 0.3s ease;
+}
+
+/* Normal */
+.lhprogress__time-bar-fill--normal {
+    background: #1f4e79;
+}
+
+/* Due */
+.lhprogress__time-bar-fill--due {
+    background: #d89b00;
+}
+
+.lhprogress__time--due .lhprogress__time-top span:first-child {
+    color: #b77900;
+}
+
+/* Due Soon */
+.lhprogress__time-bar-fill--duesoon {
+    background: #d89b00;
+}
+
+.lhprogress__time--duesoon .lhprogress__time-top span:first-child {
+    color: #b77900;
+}
+
+.lhprogress__course:has(.lhprogress__time--duesoon) {
+    background: #fffaf0;
+    border-radius: 8px;
+}
+
+/* Grace Period */
+.lhprogress__time-bar-fill--grace {
+    background: #e67e22;
+}
+
+.lhprogress__time--grace .lhprogress__time-top span:first-child {
+    color: #d35400;
+}
+
+.lhprogress__course:has(.lhprogress__time--grace) {
+    background: #fff7ed;
+    border-radius: 8px;
+}
+
+/* Overdue */
+.lhprogress__time-bar-fill--overdue {
+    background: #c62828;
+}
+
+.lhprogress__time--overdue .lhprogress__time-top span:first-child {
+    color: #c62828;
+}
+
+.lhprogress__course:has(.lhprogress__time--overdue) {
+    background: #fff5f5;
+    border-radius: 8px;
+}
+
+.lhprogress__time-remaining {
+    margin-top: 4px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.lhprogress__time--duesoon .lhprogress__time-remaining,
+.lhprogress__time--due .lhprogress__time-remaining {
+    color: #b77900;
+    font-weight: 600;
+}
+
+.lhprogress__time--grace .lhprogress__time-remaining {
+    color: #d35400;
+    font-weight: 600;
+}
+
+.lhprogress__time--overdue .lhprogress__time-remaining {
+    color: #c62828;
+    font-weight: 600;
+}
+
+/* Course metadata states */
+.lhprogress__course-meta--duesoon span:first-child,
+.lhprogress__course-meta--duesoon span:last-child {
+    color: #b77900;
+}
+
+.lhprogress__course-meta--grace span:first-child,
+.lhprogress__course-meta--grace span:last-child {
+    color: #d35400;
+    font-weight: 600;
+}
+
+.lhprogress__course-meta--overdue span:first-child,
+.lhprogress__course-meta--overdue span:last-child {
+    color: #c62828;
+    font-weight: 600;
+}
+
+/* Course Progress Label */
+
+/* Course Progress Label */
+
+.lhprogress__progress-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 5px;
+    font-size: 11px;
+    line-height: 1.3;
+    color: #64748b;
+}
+
+.lhprogress__progress-label span {
+    font-weight: 600;
+}
+
+.lhprogress__progress-label strong {
+    font-weight: 600;
+    color: #1f4e79;
+}
+
+/* =========================================================
+   Learning Journey - Timeline Milestones
+   ========================================================= */
+
+.lhprogress__time-bar {
+    position: relative;
+}
+
+.lhprogress__time-marker {
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #ffffff;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.lhprogress__time-marker--due {
+    background: #d89b00;
+}
+
+.lhprogress__time-marker--overdue {
+    background: #c62828;
+}
+
+.lhprogress__time-scale {
+    position: relative;
+    height: 18px;
+    margin-top: 3px;
+    font-size: 9px;
+    color: #94a3b8;
+}
+
+.lhprogress__time-scale > span:first-child {
+    position: absolute;
+    left: 0;
+}
+
+.lhprogress__time-scale > span:last-child {
+    position: absolute;
+    right: 0;
+}
+
+.lhprogress__time-scale-due {
+    position: absolute;
+    transform: translateX(-50%);
+    color: #b77900;
+    font-weight: 600;
+}
+
+.lhprogress__time-scale-overdue {
+    position: absolute;
+    transform: translateX(-50%);
+    color: #c62828;
+    font-weight: 600;
+}
