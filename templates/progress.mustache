@@ -64,23 +64,23 @@
                 </span>
             </div>
 
-{{#showduesoonstat}}
-    <div class="lhprogress__stat">
-        <strong>{{duesooncourses}}</strong>
-        <span>
-            {{#str}}duesoon, block_lhprogress{{/str}}
-        </span>
-    </div>
-{{/showduesoonstat}}
+            {{#showduesoonstat}}
+                <div class="lhprogress__stat">
+                    <strong>{{duesooncourses}}</strong>
+                    <span>
+                        {{#str}}duesoon, block_lhprogress{{/str}}
+                    </span>
+                </div>
+            {{/showduesoonstat}}
 
-{{#showoverduestat}}
-    <div class="lhprogress__stat lhprogress__stat--overdue">
-        <strong>{{overduecourses}}</strong>
-        <span>
-            {{#str}}overdue, block_lhprogress{{/str}}
-        </span>
-    </div>
-{{/showoverduestat}}
+            {{#showoverduestat}}
+                <div class="lhprogress__stat lhprogress__stat--overdue">
+                    <strong>{{overduecourses}}</strong>
+                    <span>
+                        {{#str}}overdue, block_lhprogress{{/str}}
+                    </span>
+                </div>
+            {{/showoverduestat}}
 
         </div>
     </div>
@@ -104,20 +104,22 @@
 
                 <div class="lhprogress__course-content">
 
-<div class="lhprogress__course-top">
-    <strong>{{name}}</strong>
-</div>
+                    <div class="lhprogress__course-top">
+                        <strong>{{name}}</strong>
+                    </div>
 
-{{#showprogress}}
-    <div class="lhprogress__progress-label">
-        <span>Course Progress</span>
-        <strong>{{progress}}%</strong>
-    </div>
+                    {{#showprogress}}
+                        <div class="lhprogress__progress-label">
+                            <span>
+                                {{#str}}courseprogress, block_lhprogress{{/str}}
+                            </span>
+                            <strong>{{progress}}%</strong>
+                        </div>
 
-    <div class="lhprogress__bar">
-        <span style="width: {{progress}}%;"></span>
-    </div>
-{{/showprogress}}
+                        <div class="lhprogress__bar">
+                            <span style="width: {{progress}}%;"></span>
+                        </div>
+                    {{/showprogress}}
 
                     {{#showprogress}}
                         <div class="lhprogress__bar">
@@ -138,26 +140,26 @@
                                 <span>
 
                                     {{#duesoon}}
-                                        Due Soon
+                                        {{#str}}duesoon, block_lhprogress{{/str}}
                                     {{/duesoon}}
 
                                     {{#due}}
-                                        Due
+                                        {{#str}}due, block_lhprogress{{/str}}
                                     {{/due}}
 
                                     {{#graceperiod}}
-                                        Grace Period
+                                        {{#str}}graceperiod, block_lhprogress{{/str}}
                                     {{/graceperiod}}
 
                                     {{#overdue}}
-                                        Overdue
+                                        {{#str}}overdue, block_lhprogress{{/str}}
                                     {{/overdue}}
 
                                     {{^duesoon}}
                                         {{^due}}
                                             {{^graceperiod}}
                                                 {{^overdue}}
-                                                    Time Progress
+                                                    {{#str}}timeprogress, block_lhprogress{{/str}}
                                                 {{/overdue}}
                                             {{/graceperiod}}
                                         {{/due}}
@@ -172,71 +174,76 @@
                             </div>
 
 
-<div class="lhprogress__time-bar">
+                            <div class="lhprogress__time-bar">
 
-    <span
-        class="lhprogress__time-bar-fill lhprogress__time-bar-fill--{{timeclass}}"
-        style="width: {{timeprogress}}%;">
-    </span>
+                                <span
+                                    class="lhprogress__time-bar-fill lhprogress__time-bar-fill--{{timeclass}}"
+                                    style="width: {{timeprogress}}%;">
+                                </span>
 
-    <span
-        class="lhprogress__time-marker lhprogress__time-marker--due"
-        style="left: {{dueposition}}%;">
-    </span>
+                                <span
+                                    class="lhprogress__time-marker lhprogress__time-marker--due"
+                                    style="left: {{dueposition}}%;">
+                                </span>
 
-    <span
-        class="lhprogress__time-marker lhprogress__time-marker--overdue"
-        style="left: {{overdueposition}}%;">
-    </span>
+                                <span
+                                    class="lhprogress__time-marker lhprogress__time-marker--overdue"
+                                    style="left: {{overdueposition}}%;">
+                                </span>
 
-</div>
+                            </div>
 
-<div class="lhprogress__time-scale">
 
-    <span>Enrolled</span>
+                            <div class="lhprogress__time-scale">
 
-    <span
-        class="lhprogress__time-scale-due"
-        style="left: {{dueposition}}%;">
-        Due
-    </span>
+                                <span>
+                                    {{#str}}enrolled, block_lhprogress{{/str}}
+                                </span>
 
-    <span
-        class="lhprogress__time-scale-overdue"
-        style="left: {{overdueposition}}%;">
-        Overdue
-    </span>
+                                <span
+                                    class="lhprogress__time-scale-due"
+                                    style="left: {{dueposition}}%;">
+                                    {{#str}}due, block_lhprogress{{/str}}
+                                </span>
 
-    <span>Final</span>
+                                <span
+                                    class="lhprogress__time-scale-overdue"
+                                    style="left: {{overdueposition}}%;">
+                                    {{#str}}overdue, block_lhprogress{{/str}}
+                                </span>
 
-</div>
+                                <span>
+                                    {{#str}}final, block_lhprogress{{/str}}
+                                </span>
+
+                            </div>
+
 
                             {{#daysremaining}}
 
                                 <div class="lhprogress__time-remaining">
 
                                     {{#duesoon}}
-                                        Due in {{daysremaining}} days
+                                        {{#str}}dueindays, block_lhprogress, {{daysremaining}}{{/str}}
                                     {{/duesoon}}
 
                                     {{#due}}
-                                        Due
+                                        {{#str}}due, block_lhprogress{{/str}}
                                     {{/due}}
 
                                     {{#graceperiod}}
-                                        Grace period:
-                                        {{daysremaining}} days remaining
+                                        {{#str}}graceperiodremaining, block_lhprogress, {{daysremaining}}{{/str}}
                                     {{/graceperiod}}
 
                                     {{#overdue}}
-                                        Overdue
+                                        {{#str}}overdue, block_lhprogress{{/str}}
                                     {{/overdue}}
 
                                     {{^duesoon}}
                                         {{^due}}
                                             {{^graceperiod}}
                                                 {{^overdue}}
-                                                    {{daysremaining}} days remaining
+                                                    {{#str}}daysremaining, block_lhprogress, {{daysremaining}}{{/str}}
                                                 {{/overdue}}
                                             {{/graceperiod}}
                                         {{/due}}
@@ -269,7 +276,7 @@
                         {{#showenrollmentdate}}
                             {{#enrollmentdate}}
                                 <span>
-                                    Enrolled {{enrollmentdate}}
+                                    {{#str}}enrolleddate, block_lhprogress, {{enrollmentdate}}{{/str}}
                                 </span>
                             {{/enrollmentdate}}
                         {{/showenrollmentdate}}
@@ -277,7 +284,7 @@
                         {{#showduedate}}
                             {{#duedate}}
                                 <span>
-                                    Due {{duedate}}
+                                    {{#str}}duedate, block_lhprogress, {{duedate}}{{/str}}
                                 </span>
                             {{/duedate}}
                         {{/showduedate}}

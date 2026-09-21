@@ -1,6 +1,27 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 or later.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle. If not, see <https://www.gnu.org/licenses/>.
 
 defined('MOODLE_INTERNAL') || die();
+
+/**
+ * Learning Progress block.
+ *
+ * @package    block_lhprogress
+ * @copyright  2026 Muhammad Shahrukh
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 class block_lhprogress extends block_base {
 
@@ -134,8 +155,9 @@ class block_lhprogress extends block_base {
 
                 if ($includesubcategories) {
 
-                    $categorywhere = ' AND cc.path LIKE :categorypath ';
+                    $categorywhere = ' AND (cc.id = :categoryid OR cc.path LIKE :categorypath) ';
 
+                    $params['categoryid'] = $coursecategory;
                     $params['categorypath'] = $category->path . '/%';
 
                 } else {
@@ -206,6 +228,7 @@ class block_lhprogress extends block_base {
 
         $totalprogress = 0;
         $progresscoursecount = 0;
+        $activecourses = 0;
 
         $now = time();
 
@@ -246,6 +269,25 @@ class block_lhprogress extends block_base {
 
             /*
              * ========================================================
+             * OVERALL COURSE STATISTICS
+             * ========================================================
+             *
+             * These values are calculated before display filters.
+             *
+             * Display settings such as Show Completed or
+             * Show Not Started control visibility only. They must
+             * not change the overall progress or active-course count.
+             */
+
+            if ($progress < 100) {
+                $activecourses++;
+            }
+
+            $totalprogress += $progress;
+            $progresscoursecount++;
+
+            /*
+             * ========================================================
              * DEFAULT TIME VALUES
              * ========================================================
              */
@@ -254,12 +296,12 @@ class block_lhprogress extends block_base {
             $overduethreshold = 0;
             $finaloverduedate = 0;
 
-	    $timeprogress = 0;
-	    $dueposition = 0;
-	    $overdueposition = 0;
-	    $finaloverdueposition = 100;
-	    $daysremaining = 0;
-	    $timeremainingtext = '';
+            $timeprogress = 0;
+            $dueposition = 0;
+            $overdueposition = 0;
+            $finaloverdueposition = 100;
+            $daysremaining = 0;
+            $timeremainingtext = '';
 
             $showtimetracking = false;
 
@@ -281,6 +323,7 @@ class block_lhprogress extends block_base {
                 /*
                  * Completed always takes priority.
                  */
+
                 $status = get_string(
                     'completed',
                     'block_lhprogress'
@@ -325,53 +368,54 @@ class block_lhprogress extends block_base {
                      * Enrollment → Final Overdue
                      */
 
-$totaltime = $finaloverduedate - $enrollmentdate;
+                    $totaltime = $finaloverduedate - $enrollmentdate;
 
-if ($totaltime > 0) {
+                    if ($totaltime > 0) {
 
-    /*
-     * Current position on the complete timeline.
-     */
-    $elapsedtime = $now - $enrollmentdate;
+                        /*
+                         * Current position on the complete timeline.
+                         */
 
-    $timeprogress = (int) round(
-        ($elapsedtime / $totaltime) * 100
-    );
+                        $elapsedtime = $now - $enrollmentdate;
 
-    $timeprogress = max(
-        0,
-        min(100, $timeprogress)
-    );
+                        $timeprogress = (int) round(
+                            ($elapsedtime / $totaltime) * 100
+                        );
 
-    /*
-     * Timeline milestone positions.
-     *
-     * Example:
-     * Due after 14 days.
-     * Overdue after 30 days.
-     * Grace period 7 days.
-     *
-     * Final timeline = 37 days.
-     */
+                        $timeprogress = max(
+                            0,
+                            min(100, $timeprogress)
+                        );
 
-    $dueposition = (int) round(
-        (($duedate - $enrollmentdate) / $totaltime) * 100
-    );
+                        /*
+                         * Timeline milestone positions.
+                         *
+                         * Example:
+                         * Due after 14 days.
+                         * Overdue after 30 days.
+                         * Grace period 7 days.
+                         *
+                         * Final timeline = 37 days.
+                         */
 
-    $overdueposition = (int) round(
-        (($overduethreshold - $enrollmentdate) / $totaltime) * 100
-    );
+                        $dueposition = (int) round(
+                            (($duedate - $enrollmentdate) / $totaltime) * 100
+                        );
 
-    $dueposition = max(
-        0,
-        min(100, $dueposition)
-    );
+                        $overdueposition = (int) round(
+                            (($overduethreshold - $enrollmentdate) / $totaltime) * 100
+                        );
 
-    $overdueposition = max(
-        0,
-        min(100, $overdueposition)
-    );
-}
+                        $dueposition = max(
+                            0,
+                            min(100, $dueposition)
+                        );
+
+                        $overdueposition = max(
+                            0,
+                            min(100, $overdueposition)
+                        );
+                    }
 
                     /*
                      * ----------------------------------------------
@@ -579,15 +623,6 @@ if ($totaltime > 0) {
 
             /*
              * ========================================================
-             * OVERALL PROGRESS
-             * ========================================================
-             */
-
-            $totalprogress += $progress;
-            $progresscoursecount++;
-
-            /*
-             * ========================================================
              * COURSE DATA
              * ========================================================
              */
@@ -663,11 +698,11 @@ if ($totaltime > 0) {
 
                 'timeprogress' => $timeprogress,
 
-'dueposition' => $dueposition,
+                'dueposition' => $dueposition,
 
-'overdueposition' => $overdueposition,
+                'overdueposition' => $overdueposition,
 
-'finaloverdueposition' => $finaloverdueposition,
+                'finaloverdueposition' => $finaloverdueposition,
 
                 'daysremaining' => $daysremaining,
 
@@ -739,26 +774,23 @@ if ($totaltime > 0) {
 
                 'progressoffset' => $progressoffset,
 
-                'activecourses' => max(
-                    0,
-                    count($courses) - $completedcourses
-                ),
+                'activecourses' => $activecourses,
 
                 'completedcourses' => $completedcourses,
 
-'showduesoonstat' => (
-    $enableduedates &&
-    $showduesoon
-),
+                'showduesoonstat' => (
+                    $enableduedates &&
+                    $showduesoon
+                ),
 
-'duesooncourses' => $duesooncourses,
+                'duesooncourses' => $duesooncourses,
 
-'showoverduestat' => (
-    $enableduedates &&
-    $showoverdue
-),
+                'showoverduestat' => (
+                    $enableduedates &&
+                    $showoverdue
+                ),
 
-'overduecourses' => $overduecourses,
+                'overduecourses' => $overduecourses,
 
                 'showbrowsecourses' => $showbrowsecourses,
 
