@@ -42,10 +42,6 @@ class block_lhprogress extends block_base {
 
         $this->content = new stdClass();
 
-        $PAGE->requires->css(
-            new moodle_url('/blocks/lhprogress/styles.css')
-        );
-
         require_login();
 
         /*

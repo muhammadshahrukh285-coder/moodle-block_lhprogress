@@ -104,3 +104,5 @@ $string['overdueafter_desc'] = 'Number of days after enrollment when the overdue
 
 $string['overduegrace'] = 'Overdue grace period';
 $string['overduegrace_desc'] = 'Additional number of days after the overdue period begins before the course is finally marked as overdue.';
+
+$string['myaddinstance'] = 'Add a new Learning Progress block to the Dashboard';

@@ -1,4 +1,13 @@
 <?php
+
+/**
+ * Capability definitions for the Learning Progress block.
+ *
+ * @package    block_lhprogress
+ * @copyright  2026 Muhammad Shahrukh
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -16,6 +25,16 @@
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = [
+    'block/lhprogress:addinstance' => [
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_BLOCK,
+        'archetypes' => [
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW,
+        ],
+        'clonepermissionsfrom' => 'moodle/site:manageblocks',
+    ],
     'block/lhprogress:myaddinstance' => [
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,

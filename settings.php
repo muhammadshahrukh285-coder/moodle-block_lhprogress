@@ -1,4 +1,13 @@
 <?php
+
+/**
+ * Settings for the Learning Progress block.
+ *
+ * @package    block_lhprogress
+ * @copyright  2026 Muhammad Shahrukh
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -26,23 +35,26 @@ if ($hassiteconfig) {
         ''
     ));
 
-    $categoryoptions = [
-        0 => get_string('allcategories', 'block_lhprogress'),
-    ];
-
-    $categories = core_course_category::get_all();
-
-    foreach ($categories as $category) {
-        $categoryoptions[$category->id] = $category->get_nested_name(false);
-    }
-
     $settings->add(new admin_setting_configselect(
         'block_lhprogress/coursecategory',
         get_string('coursecategory', 'block_lhprogress'),
         get_string('coursecategory_desc', 'block_lhprogress'),
         0,
-        $categoryoptions
+        function() {
+            $categoryoptions = [
+                0 => get_string('allcategories', 'block_lhprogress'),
+            ];
+
+            $categories = core_course_category::get_all();
+
+            foreach ($categories as $category) {
+                $categoryoptions[$category->id] = $category->get_nested_name(false);
+            }
+
+            return $categoryoptions;
+        }
     ));
+
 
     $settings->add(new admin_setting_configcheckbox(
         'block_lhprogress/includesubcategories',
