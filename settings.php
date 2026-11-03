@@ -25,6 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
+    if ($ADMIN->fulltree) {
 
     /*
      * Course tracking.
@@ -183,4 +184,5 @@ if ($hassiteconfig) {
         get_string('showbrowsecourses_desc', 'block_lhprogress'),
         1
     ));
+    }
 }
