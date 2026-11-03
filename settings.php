@@ -36,24 +36,21 @@ if ($hassiteconfig) {
         ''
     ));
 
+    $categoryoptions = [
+        0 => get_string('allcategories', 'block_lhprogress'),
+    ];
+
+    $categories = core_course_category::get_all();
+    foreach ($categories as $category) {
+        $categoryoptions[$category->id] = $category->get_nested_name(false);
+    }
+
     $settings->add(new admin_setting_configselect(
         'block_lhprogress/coursecategory',
         get_string('coursecategory', 'block_lhprogress'),
         get_string('coursecategory_desc', 'block_lhprogress'),
         0,
-        function() {
-            $categoryoptions = [
-                0 => get_string('allcategories', 'block_lhprogress'),
-            ];
-
-            $categories = core_course_category::get_all();
-
-            foreach ($categories as $category) {
-                $categoryoptions[$category->id] = $category->get_nested_name(false);
-            }
-
-            return $categoryoptions;
-        }
+        $categoryoptions
     ));
 
 
